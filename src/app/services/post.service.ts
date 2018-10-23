@@ -10,20 +10,28 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
   
-    getPostsData(): Observable<any> {
-      return this.http.get("http://localhost:8081/api/posts");
-    }
+  getPostsData(): Observable<any> {
+    return this.http.get("http://localhost:8081/api/posts");
+  }
 
   private posts: Post[] = [];
   //private postsUpdated = new Subject<Post[]>();
 
-  getPosts() {
-    return [...this.posts];
+  getPost(id: string): Observable<any> {
+    return this.http.get("http://localhost:8081/api/posts/"+id);
+  }
+
+  deletePost(id: string):Observable<any>{
+    return this.http.delete("http://localhost:8081/api/posts/"+id);
+  }
+  updatePost(id: string, title: string, content: string): Observable<any> {
+    const post: Post = { title: title, content: content };
+    return this.http.put("http://localhost:8081/api/posts/"+id, post);
   }
 
   addPost(title: string, content: string): Observable<any> {
-    const post: Post = {title: title, content: content};
-    return this.http.post("http://localhost:8081/api/posts",post);
+    const post: Post = { title: title, content: content };
+    return this.http.post("http://localhost:8081/api/posts", post);
   }
 
 }
