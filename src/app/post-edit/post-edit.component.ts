@@ -22,7 +22,7 @@ post : any = [];
   }
 
   onEditPost(form: NgForm) {
-    this.ps.updatePost(this.post[0]._id, form.value.title, form.value.content).subscribe();
+    this.ps.updatePost(this.post[0]._id, form.value.title, form.value.content, form.value.image).subscribe();
     this.router.navigate(['/list']);
   }
 

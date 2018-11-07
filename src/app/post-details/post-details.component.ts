@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PostService} from '../services/post.service';
 import { Observable } from 'rxjs';
-import {Post} from '../post.model';
+import { Post } from '../post.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -10,14 +10,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./post-details.component.css']
 })
 export class PostDetailsComponent implements OnInit {
-
-  
   posts: any = [];
 
   constructor(private ps:PostService){}
 
   ngOnInit(){
-    //this.posts = this.ps.getPosts();
     this.ps.getPostsData().subscribe(data => {
         this.posts = data;
     });
@@ -28,5 +25,4 @@ export class PostDetailsComponent implements OnInit {
      this.ps.deletePost(id).subscribe();
      this.ngOnInit();
    }
-
 }

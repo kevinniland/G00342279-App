@@ -1,29 +1,19 @@
 <mat-card>
   <form (submit)="onAddPost(postForm)" #postForm="ngForm">
     <mat-form-field>
-      <input
-        matInput
-        type="text"
-        name="title"
-        ngModel
-        required
-        minlength="3"
-        #title="ngModel">
-      <mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>
+      <input matInput
+        type="text" name="title" ngModel required minlength="3" #title="ngModel">
+      <mat-error *ngIf="title.invalid">Please enter a musician's name</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <textarea
-        matInput
-        rows="4"
-        name="content"
-        ngModel
-        required
-        #content="ngModel"></textarea>
-      <mat-error *ngIf="content.invalid">Please enter a post title.</mat-error>
+      <textarea matInput rows="4" name="content" ngModel required #content="ngModel"></textarea>
+      <mat-error *ngIf="content.invalid">Please enter a musician's song</mat-error>
     </mat-form-field>
-    <button
-      mat-raised-button
-      color="accent"
-      type="submit">Save Post</button>
+    <mat-form-field>
+      <input matInput
+        type="url" name = "image" ngModel required #image = "ngModel">
+        <mat-error *ngIf = "image.invalid">Please enter a valid image URL</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">Save Post</button>
   </form>
 </mat-card>

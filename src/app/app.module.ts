@@ -26,10 +26,10 @@ const appRoutes: Routes = [
     path: 'create',
     component: PostCreateComponent
   },
-  {
-    path: 'edit/:id',
-    component: PostEditComponent
-  }
+  // {
+  //   path: 'edit/:id',
+  //   component: PostEditComponent
+  // }
 ];
 
 
