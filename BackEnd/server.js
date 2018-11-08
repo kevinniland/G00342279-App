@@ -16,12 +16,12 @@ var postSchema = new Schema({
     // Vars
     title: String,
     content: String,
-    url: URL
+    image: String
 })
 
 // // Model
 var PostModel = mongoose.model('post', postSchema);
-var UserModel = mongoose.model('users', userSchema);
+//var UserModel = mongoose.model('users', userSchema);
 
 //Here we are configuring express to use body-parser as middle-ware. 
 app.use(bodyParser.urlencoded({ extended: false })); 
