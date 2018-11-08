@@ -29,8 +29,8 @@ app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
     });
 
@@ -40,6 +40,15 @@ app.post('/api/posts', function(req, res){
         content:req.body.content,
         image:req.body.image
     })
+
+    res.send("Item added");
+})
+
+app.use("/", express.static(path.join(__dirname, "angular")));
+
+app.get('/', function(req, res) {
+    // res.send("Home page");
+    res.sendFile(path.join(__dirname, "angular", "index.html"));
 })
 
 app.get('/api/posts', function(req, res) {
@@ -63,6 +72,35 @@ app.get('/getposts', function (req, res) {
 
             res.json(data);
         });
+})
+
+app.delete('/api/posts/:id', function(req, res) {
+    //window.location.reload();
+    PostModel.deleteOne({ _id: req.params.id}, 
+        function (err) {
+
+        });
+})
+
+app.get('api/posts/:id', function(req, res) {
+    PostModel.find({ _id: req.params.id},
+        function (err, data) {
+            if (err) {
+                return handleError(err);
+            }
+
+            res.json(data);
+        })
+})
+
+app.put('/api/posts/:id', function(req, res) {
+    PostModel.findByIdAndUpdate (req.params.id, req.body, function (err, post) {
+        if (err) {
+            return next(err);
+        }
+
+        res.json(post);
+    })
 })
 
 var server = app.listen(8081, function () {

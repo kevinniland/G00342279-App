@@ -25,6 +25,7 @@ export class PostService {
 
   updatePost(id: string, title: string, content: string, image: string): Observable<any> {
     const post: Post = { title: title, content: content, image: image };
+    
     return this.http.put("http://localhost:8081/api/posts/" + id, post);
   }
 
