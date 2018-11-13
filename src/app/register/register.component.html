@@ -1,0 +1,30 @@
+<mat-card>
+  <form (submit)="onAddUser(postForm)" #postForm="ngForm">
+    <mat-form-field>
+      <input matInput
+        type="text" name="username" ngModel required minlength="3" #username="ngModel" placeholder="Username">
+      <mat-error *ngIf="username.invalid">Please enter a username</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput
+        type = "password" name = "password" ngModel required minlength = "6" #password = "ngModel" placeholder="Password">
+      <mat-error *ngIf="password.invalid">Please enter a password</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput
+        type = "password" name = "password" ngModel required minlength = "6" #password = "ngModel" placeholder="Re-enter password">
+      <mat-error *ngIf="password.invalid">Please re-enter your password</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput
+      type="text" name="firstName" ngModel required minlength="3" #firstname="ngModel" placeholder="First name">
+    <mat-error *ngIf="username.invalid">Please enter your first name</mat-error>
+    </mat-form-field>
+  <mat-form-field>
+    <input matInput
+    type="text" name="lastName" ngModel required minlength="3" #lastname="ngModel" placeholder="Last name">
+    <mat-error *ngIf="username.invalid">Please enter you last name</mat-error>
+  </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">Register</button>
+  </form>
+</mat-card>

@@ -2,26 +2,29 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
-// MONGOOSE LAB
-// Connecting to database
 var mongoose = require('mongoose');
 
 var mongoDB = 'mongodb://kevin_niland:JustaHollow97@ds111422.mlab.com:11422/mongo_express_lab';
 mongoose.connect(mongoDB);
 
-// Define schema
 var Schema = mongoose.Schema;
 
-var postSchema = new Schema({
-    // Vars
+var postSchema = new Schema ({
     title: String,
     content: String,
-    image: String
+    image: String,
+    video: String
 })
 
-// // Model
+var userSchema = new Schema ({
+    username: String,
+    password: String,
+    firstName: String,
+    lastName: String
+})
+
 var PostModel = mongoose.model('post', postSchema);
-//var UserModel = mongoose.model('users', userSchema);
+var UserModel = mongoose.model('users', userSchema);
 
 //Here we are configuring express to use body-parser as middle-ware. 
 app.use(bodyParser.urlencoded({ extended: false })); 
@@ -34,25 +37,48 @@ app.use(function(req, res, next) {
     next();
     });
 
-app.post('/api/posts', function(req, res){
+app.post('/api/posts', function(req, res) {
     PostModel.create ({
-        title:req.body.title,
-        content:req.body.content,
-        image:req.body.image
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image,
+        video: req.body.video 
     })
 
     res.send("Item added");
 })
 
-app.use("/", express.static(path.join(__dirname, "angular")));
+app.post('/api/users', function (req, res) {
+    UserModel.create ({
+        username: req.body.username,
+        password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName
+    })
+})
 
-app.get('/', function(req, res) {
-    // res.send("Home page");
-    res.sendFile(path.join(__dirname, "angular", "index.html"));
+// app.use("/", express.static(path.join(__dirname, "angular")));
+
+// app.get('/', function(req, res) {
+//     res.sendFile(path.join(__dirname, "angular", "index.html"));
+// })
+
+app.get('/', function (req, res) {
+    res.send('Hello from Express');
 })
 
 app.get('/api/posts', function(req, res) {
     PostModel.find(function(err, data) {
+        if (err) {
+            res.send(err);
+        }
+
+        res.json(data);
+    });
+})
+
+app.get('/api/users', function (req, res) {
+    UserModel.find(function (err, data) {
         if (err) {
             res.send(err);
         }
@@ -74,16 +100,42 @@ app.get('/getposts', function (req, res) {
         });
 })
 
+// Delete functions
 app.delete('/api/posts/:id', function(req, res) {
-    //window.location.reload();
     PostModel.deleteOne({ _id: req.params.id}, 
-        function (err) {
+        function (err, data) {
+            if (err) {
+                res.send(err);
+            }
 
+            res.send(data);
+        });
+})
+
+app.delete('/api/users/:id', function (req, res) {
+    UserModel.deleteOne ({ _id: req.params.id}, 
+        function (err, data) {
+            if (err) {
+                res.send(err);
+            }
+
+            res.send(data);
         });
 })
 
 app.get('api/posts/:id', function(req, res) {
     PostModel.find({ _id: req.params.id},
+        function (err, data) {
+            if (err) {
+                return handleError(err);
+            }
+
+            res.json(data);
+        })
+})
+
+app.get('api/users/:id', function(req, res) {
+    UserModel.find({ _id: req.params.id},
         function (err, data) {
             if (err) {
                 return handleError(err);

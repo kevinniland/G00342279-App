@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { PostDetailsComponent } from './post-details/post-details.component';
-import {PostService} from './services/post.service';
-import {HttpClientModule} from '@angular/common/http';
+import { PostDetailsComponent } from './list/list.component';
+import { PostService } from './services/post.service';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes} from '@angular/router';
 import { FormsModule } from "@angular/forms";
@@ -13,9 +13,20 @@ import { MatInputModule,
   MatButtonModule,
   MatIconModule,
   MatToolbarModule,
-  MatExpansionModule} from '@angular/material';
-import { PostCreateComponent } from './post-create/post-create.component';
-import { PostEditComponent } from './post-edit/post-edit.component';
+  MatExpansionModule,
+  MatRadioModule,
+  MatSidenavModule,
+  MatListModule,
+  MatFormFieldModule } from '@angular/material';
+import { VgCoreModule } from 'videogular2/core';
+import { VgControlsModule } from 'videogular2/controls';
+import { PostCreateComponent } from './create/create.component';
+import { UpdateComponent } from './update/update.component';
+import { ImagesComponent } from './images/images.component';
+import { VideosComponent } from './videos/videos.component';
+import { LoginComponent } from './login/login.component';
+import { UsersComponent } from './users/users.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   {
@@ -26,19 +37,39 @@ const appRoutes: Routes = [
     path: 'create',
     component: PostCreateComponent
   },
-  // {
-  //   path: 'edit/:id',
-  //   component: PostEditComponent
-  // }
+  {
+    path: 'images',
+    component: ImagesComponent
+  },
+  {
+    path: 'videos',
+    component: VideosComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
+    path: 'users',
+    component: UsersComponent
+  }
 ];
-
 
 @NgModule({
   declarations: [
     AppComponent,
     PostDetailsComponent,
     PostCreateComponent,
-    PostEditComponent
+    UpdateComponent,
+    ImagesComponent,
+    VideosComponent,
+    LoginComponent,
+    UsersComponent,
+    RegisterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -49,13 +80,22 @@ const appRoutes: Routes = [
     MatButtonModule,
     BrowserAnimationsModule,
     MatInputModule,
-  MatCardModule,
-  MatButtonModule,
-  MatToolbarModule,
-  MatExpansionModule,
-  MatMenuModule
+    MatCardModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatExpansionModule,
+    MatMenuModule,
+    MatRadioModule,
+    MatSidenavModule,
+    MatListModule,
+    MatFormFieldModule,
+    VgCoreModule,
+    VgControlsModule
   ],
   providers: [PostService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule { 
+
+}

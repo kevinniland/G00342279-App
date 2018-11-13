@@ -5,10 +5,10 @@ import { NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-post-edit',
-  templateUrl: './post-edit.component.html',
-  styleUrls: ['./post-edit.component.css']
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.css']
 })
-export class PostEditComponent implements OnInit {
+export class UpdateComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private ps:PostService) { 
     
   }
@@ -24,7 +24,7 @@ export class PostEditComponent implements OnInit {
   }
 
   onEditPost(form: NgForm) {
-    this.ps.updatePost(this.post[0]._id, form.value.title, form.value.content, form.value.image).subscribe();
+    this.ps.updatePost(this.post[0]._id, form.value.title, form.value.content, form.value.image, form.value.video).subscribe();
     this.router.navigate(['/list']);
   }
 }

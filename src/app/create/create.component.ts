@@ -4,15 +4,16 @@ import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-post-create',
-  templateUrl: './post-create.component.html',
-  styleUrls: ['./post-create.component.css']
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.css']
 })
 export class PostCreateComponent implements OnInit {
+  constructor(private service: PostService) { 
 
-  constructor(private service:PostService) { }
+  }
 
   onAddPost(form: NgForm) {
-    this.service.addPost(form.value.title, form.value.content, form.value.image).subscribe();
+    this.service.addPost(form.value.title, form.value.content, form.value.image, form.value.video).subscribe();
     
     console.log(form.value);
     form.resetForm();

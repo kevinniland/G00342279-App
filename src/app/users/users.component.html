@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">User's List</mat-toolbar>
+<mat-accordion multi="true" *ngIf="users.length > 0">
+  <mat-expansion-panel [expanded]="true" *ngFor="let user of users">
+    <mat-expansion-panel-header>
+      {{ user.username }}
+    </mat-expansion-panel-header>
+    <p>{{ user.firstName }} {{ user.lastName }}</p>
+    <mat-action-row>
+        <button (click)="onDeleteUser(user._id)" mat-button color="warn">Delete</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="users.length <= 0">No users added yet!</p> 
