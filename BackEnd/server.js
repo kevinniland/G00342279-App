@@ -128,16 +128,14 @@ app.delete('/api/users/:id', function (req, res) {
         });
 })
 
-app.get('/api/posts/:_id', function(req, res) {
-    PostModel.findOne({ _id: req.params.id},
+app.get('/api/posts/:id', function(req, res) {
+    PostModel.findById(req.params.id,
         function (err, data) {
             if (err) {
                 return handleError(err);
             }
 
             res.json(data);
-            console.log(res.json(data));
-            
         })
 })
 
@@ -153,13 +151,14 @@ app.get('/api/users/:id', function(req, res) {
         })
 })
 
-app.put('/api/posts/:_id', function(req, res) {
-    PostModel.findByIdAndUpdate (req.params.id, req.body, function (err, post) {
-        if (err) {
-            return next(err);
-        }
+app.put('/api/posts/:id', function(req, res) {
+    PostModel.findByIdAndUpdate (req.params.id, req.body, 
+        function (err, data) {
+            if (err) {
+                return next(err);
+            }
 
-        res.json(post);
+        res.json(data);
     });
 })
 

@@ -16,15 +16,12 @@ export class PostService {
 
   private posts: Post[] = [];
 
-  getPost(id: string): Observable<any> {
-    console.log(id);
-    console.log(this.http.get("http://localhost:8081/api/posts/" + id));
-    
-    return this.http.get("http://localhost:8081/api/posts/" + id);
+  deletePost(id: string): Observable<any>{
+    return this.http.delete("http://localhost:8081/api/posts/" + id);
   }
 
-  deletePost(id: string):Observable<any>{
-    return this.http.delete("http://localhost:8081/api/posts/" + id);
+  getPost(id: string): Observable<any> {
+    return this.http.get("http://localhost:8081/api/posts/" + id);
   }
 
   updatePost(id: string, title: string, content: string, image: string, video: string): Observable<any> {

@@ -9,25 +9,21 @@ import { NgForm } from "@angular/forms";
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent implements OnInit {
+  post : any = [];
+
   constructor(private router: Router, private route: ActivatedRoute, private ps:PostService) { 
     
   }
-  
-  post : any = [];
 
   ngOnInit() {
-    console.log(this.route.snapshot.params['_id']);
-    
-    this.ps.getPost(this.route.snapshot.params['_id']).subscribe(data => {
+    this.ps.getPost(this.route.snapshot.params['id']).subscribe(data => {
       this.post = data;
-      console.log(this.post);
-      console.log("hello");
-      
-    })
+    });
   }
 
   onEditPost(form: NgForm) {
-    this.ps.updatePost(this.post[0]._id, form.value.title, form.value.content, form.value.image, form.value.video).subscribe();
-    this.router.navigate(['/list']);
+    this.ps.updatePost(this.post._id, form.value.title, form.value.content, form.value.image, form.value.video).subscribe(() => {
+      this.router.navigate(['/list']);
+    });
   }
 }

@@ -30,15 +30,15 @@ import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   {
-    path: 'list',
-    component: ListComponent
-  },
-  {
     path: 'create',
     component: CreateComponent
   },
   {
-    path: 'edit/:_id',
+    path: 'list',
+    component: ListComponent
+  },
+  {
+    path: 'edit/:id',
     component: UpdateComponent
   },
   {
