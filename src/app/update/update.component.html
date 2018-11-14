@@ -2,12 +2,12 @@
   <form (submit)="onEditPost(postForm)" #postForm="ngForm">
     <mat-form-field>
       <input matInput
-        type="text" name="title" ngModel={{post[0].title}} required minlength="3" #title="ngModel">
+        type="text" name="title" ngModel={{post[0]?.title}} required minlength="3" #title="ngModel">
       <mat-error *ngIf="title.invalid">Please enter a musician's title</mat-error>
     </mat-form-field>
     <mat-form-field>
       <textarea matInput
-        rows="4" name="content" ngModel={{post[0].content}} required #content="ngModel"></textarea>
+        rows="4" name="content" ngModel={{post[0]?.content}} required #content="ngModel"></textarea>
       <mat-error *ngIf="content.invalid">Please enter a musician's song</mat-error>
     </mat-form-field>
     <!-- Add code to update image -->

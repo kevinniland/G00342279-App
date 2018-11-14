@@ -18,8 +18,8 @@ export class LoginService {
   }
 
   // Adds a user
-  addUser(username: string, password: string, firstName: string, lastName: string): Observable<any> {
-    const user: User = { username: username, password: password, firstName: firstName, lastName: lastName };
+  addUser(username: string, password: string, email: string, firstName: string, lastName: string, profileImage: string): Observable<any> {
+    const user: User = { username: username, password: password, email: email, firstName: firstName, lastName: lastName, profileImage: profileImage };
     return this.http.post("http://localhost:8081/api/users", user);
   }
 

@@ -16,10 +16,13 @@ export class UpdateComponent implements OnInit {
   post : any = [];
 
   ngOnInit() {
-    console.log(this.route.snapshot.params['id']);
+    console.log(this.route.snapshot.params['_id']);
     
-    this.ps.getPost(this.route.snapshot.params['id']).subscribe(data => {
+    this.ps.getPost(this.route.snapshot.params['_id']).subscribe(data => {
       this.post = data;
+      console.log(this.post);
+      console.log("hello");
+      
     })
   }
 

@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { PostDetailsComponent } from './list/list.component';
+import { ListComponent } from './list/list.component';
 import { PostService } from './services/post.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes} from '@angular/router';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MatInputModule,
   MatMenuModule,
   MatCardModule,
@@ -20,7 +20,7 @@ import { MatInputModule,
   MatFormFieldModule } from '@angular/material';
 import { VgCoreModule } from 'videogular2/core';
 import { VgControlsModule } from 'videogular2/controls';
-import { PostCreateComponent } from './create/create.component';
+import { CreateComponent } from './create/create.component';
 import { UpdateComponent } from './update/update.component';
 import { ImagesComponent } from './images/images.component';
 import { VideosComponent } from './videos/videos.component';
@@ -31,11 +31,15 @@ import { RegisterComponent } from './register/register.component';
 const appRoutes: Routes = [
   {
     path: 'list',
-    component: PostDetailsComponent
+    component: ListComponent
   },
   {
     path: 'create',
-    component: PostCreateComponent
+    component: CreateComponent
+  },
+  {
+    path: 'edit/:_id',
+    component: UpdateComponent
   },
   {
     path: 'images',
@@ -62,8 +66,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    PostDetailsComponent,
-    PostCreateComponent,
+    ListComponent,
+    CreateComponent,
     UpdateComponent,
     ImagesComponent,
     VideosComponent,
@@ -75,6 +79,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatIconModule,
     MatButtonModule,

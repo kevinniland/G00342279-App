@@ -8,17 +8,12 @@ import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 })
 export class AppComponent /* implements OnDestroy */{
   title = 'G00342279-app';
-  // mobileQuery: MediaQueryList;
 
-  // private _mobileQueryListener: () => void;
+  get user(): any {
+    return localStorage.getItem("username");
+  }
 
-  // constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-  //   this.mobileQuery = media.matchMedia('(max-width: 600px)');
-  //   this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-  //   this.mobileQuery.addListener(this._mobileQueryListener);
-  // }
-
-  // ngOnDestroy(): void {
-  //   this.mobileQuery.removeListener(this._mobileQueryListener);
+  // get profileImage(): any {
+  //   return localStorage.getItem("profileImage");
   // }
 }

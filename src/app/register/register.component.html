@@ -2,12 +2,12 @@
   <form (submit)="onAddUser(postForm)" #postForm="ngForm">
     <mat-form-field>
       <input matInput
-        type="text" name="username" ngModel required minlength="3" #username="ngModel" placeholder="Username">
+        type="text" name="username" ngModel required minlength="3" #username="ngModel" placeholder="Enter you username">
       <mat-error *ngIf="username.invalid">Please enter a username</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input matInput
-        type = "password" name = "password" ngModel required minlength = "6" #password = "ngModel" placeholder="Password">
+        type = "password" name = "password" ngModel required minlength = "6" #password = "ngModel" placeholder="Enter your password">
       <mat-error *ngIf="password.invalid">Please enter a password</mat-error>
     </mat-form-field>
     <mat-form-field>
@@ -16,14 +16,24 @@
       <mat-error *ngIf="password.invalid">Please re-enter your password</mat-error>
     </mat-form-field>
     <mat-form-field>
+        <input matInput 
+        placeholder = "Enter your email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+      </mat-form-field>
+    <mat-form-field>
       <input matInput
-      type="text" name="firstName" ngModel required minlength="3" #firstname="ngModel" placeholder="First name">
+      type="text" name="firstName" ngModel required minlength="3" #firstname="ngModel" placeholder="Enter your first name">
     <mat-error *ngIf="username.invalid">Please enter your first name</mat-error>
     </mat-form-field>
   <mat-form-field>
     <input matInput
-    type="text" name="lastName" ngModel required minlength="3" #lastname="ngModel" placeholder="Last name">
+    type="text" name="lastName" ngModel required minlength="3" #lastname="ngModel" placeholder="Enter your last name">
     <mat-error *ngIf="username.invalid">Please enter you last name</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+        type="url" name = "profileImage" ngModel required #profileImage = "ngModel" placeholder="Image URL">
+        <mat-error *ngIf = "profileImage.invalid">Please enter a valid image URL</mat-error>
   </mat-form-field>
     <button mat-raised-button color="accent" type="submit">Register</button>
   </form>

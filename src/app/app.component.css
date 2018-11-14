@@ -1,1 +1,10 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.profile-image {
+    /* background-image: (profileImage); */
+    background-size: cover;
+}

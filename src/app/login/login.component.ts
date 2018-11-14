@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
         for (var i = 0; i < this.users.length; i++) {
           if (form.value.username == this.users[i].username && form.value.password == this.users[i].password) {
             localStorage.setItem ("username", this.users[i].username);
+            localStorage.setItem ("profileImage", this.users[i].profileImage);
           }
         }
       }

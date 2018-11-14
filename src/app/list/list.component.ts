@@ -5,11 +5,11 @@ import { Post } from '../models/post.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-post-details',
+  selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
-export class PostDetailsComponent implements OnInit {
+export class ListComponent implements OnInit {
   posts: any = [];
 
   constructor(private ps:PostService) {

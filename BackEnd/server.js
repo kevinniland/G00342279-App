@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var mongoDB = 'mongodb://kevin_niland:JustaHollow97@ds111422.mlab.com:11422/mongo_express_lab';
+
 mongoose.connect(mongoDB);
 
 var Schema = mongoose.Schema;
@@ -20,7 +21,8 @@ var userSchema = new Schema ({
     username: String,
     password: String,
     firstName: String,
-    lastName: String
+    lastName: String,
+    profileImage: String
 })
 
 var PostModel = mongoose.model('post', postSchema);
@@ -53,8 +55,11 @@ app.post('/api/users', function (req, res) {
         username: req.body.username,
         password: req.body.password,
         firstName: req.body.firstName,
-        lastName: req.body.lastName
+        lastName: req.body.lastName,
+        profileImage: req.body.profileImage
     })
+
+    res.send("User added");
 })
 
 // app.use("/", express.static(path.join(__dirname, "angular")));
@@ -123,36 +128,39 @@ app.delete('/api/users/:id', function (req, res) {
         });
 })
 
-app.get('api/posts/:id', function(req, res) {
-    PostModel.find({ _id: req.params.id},
+app.get('/api/posts/:_id', function(req, res) {
+    PostModel.findOne({ _id: req.params.id},
         function (err, data) {
             if (err) {
                 return handleError(err);
             }
 
             res.json(data);
+            console.log(res.json(data));
+            
         })
 })
 
-app.get('api/users/:id', function(req, res) {
+app.get('/api/users/:id', function(req, res) {
     UserModel.find({ _id: req.params.id},
         function (err, data) {
             if (err) {
                 return handleError(err);
             }
-
-            res.json(data);
+            else {
+                res.json(data);
+            }
         })
 })
 
-app.put('/api/posts/:id', function(req, res) {
+app.put('/api/posts/:_id', function(req, res) {
     PostModel.findByIdAndUpdate (req.params.id, req.body, function (err, post) {
         if (err) {
             return next(err);
         }
 
         res.json(post);
-    })
+    });
 })
 
 var server = app.listen(8081, function () {

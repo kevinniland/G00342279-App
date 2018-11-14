@@ -10,14 +10,13 @@
       <mat-error *ngIf="content.invalid">Please enter an artist's song</mat-error>
     </mat-form-field>
     <mat-form-field>
-        <p><i>Does another artist feature on this song?</i></p>
-        <mat-radio-group>
+        <!-- <p><i>Does another artist feature on this song?</i></p>
+         <mat-radio-group>
           <mat-radio-button ngModel value = "True" name="artistCheckYes" #artistCheckYes = "ngModel">Yes</mat-radio-button>
           <mat-radio-button ngModel value = "False" name="artistCheckNo" #artistCheckNo = "ngModel">No</mat-radio-button>
           <div *ngIf="artistCheckYes.True">
-            <p>It works</p>
           </div>
-        </mat-radio-group>
+        </mat-radio-group> -->
     </mat-form-field>
     <mat-form-field>
       <input matInput
