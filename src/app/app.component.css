@@ -1,5 +1,6 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+
 .spacer {
     flex: 1 1 auto;
 }
@@ -8,3 +9,10 @@
     /* background-image: (profileImage); */
     background-size: cover;
 }
+
+/* Sets background image */
+.background {
+    background-image: url('https://i.pinimg.com/originals/b6/b2/f2/b6b2f2864fd1f2258d90ae7abdcff44f.jpg');
+    background-size: cover;
+}
+

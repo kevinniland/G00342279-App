@@ -1,3 +1,4 @@
+// Imports used throughout the project e.g modules used for Angular materials
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -17,7 +18,8 @@ import { MatInputModule,
   MatRadioModule,
   MatSidenavModule,
   MatListModule,
-  MatFormFieldModule } from '@angular/material';
+  MatFormFieldModule,
+  MatGridListModule } from '@angular/material';
 import { VgCoreModule } from 'videogular2/core';
 import { VgControlsModule } from 'videogular2/controls';
 import { CreateComponent } from './create/create.component';
@@ -27,7 +29,9 @@ import { VideosComponent } from './videos/videos.component';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 import { RegisterComponent } from './register/register.component';
+import { UpdateUsersComponent } from './update-users/update-users.component';
 
+// Used in routing. Sets the path name for which the components are located at
 const appRoutes: Routes = [
   {
     path: 'create',
@@ -60,6 +64,10 @@ const appRoutes: Routes = [
   {
     path: 'users',
     component: UsersComponent
+  },
+  {
+    path: 'editAccount/:id',
+    component: UpdateUsersComponent
   }
 ];
 
@@ -73,7 +81,8 @@ const appRoutes: Routes = [
     VideosComponent,
     LoginComponent,
     UsersComponent,
-    RegisterComponent
+    RegisterComponent,
+    UpdateUsersComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -94,6 +103,7 @@ const appRoutes: Routes = [
     MatSidenavModule,
     MatListModule,
     MatFormFieldModule,
+    MatGridListModule,
     VgCoreModule,
     VgControlsModule
   ],

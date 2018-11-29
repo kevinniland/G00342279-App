@@ -1,3 +1,4 @@
+// Imports
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { Observable } from 'rxjs';
@@ -16,13 +17,14 @@ export class ListComponent implements OnInit {
     
   }
 
+  // On intial load, post data is retrieved
   ngOnInit() {
     this.ps.getPostsData().subscribe(data => {
         this.posts = data;
     });
    }
 
-   // Deletes a post and refreshes the page 
+   // Deletes a post (using the post's id) and refreshes the page 
    onDelete(id: string) {
      console.log("Post deleted");
 

@@ -1,34 +1,30 @@
-<mat-card>
+<!-- Displays a toolbar -->
+<mat-toolbar color="primary">Add Artist</mat-toolbar>
+
+<mat-card class="add-card">
+  <!-- When the form is submitted, the onAddPost is called from the .ts file -->
   <form (submit)="onAddPost(postForm)" #postForm="ngForm">
     <mat-form-field>
       <input matInput
         type="text" name="title" ngModel required minlength="3" #title="ngModel" placeholder="Artist's name">
+        <!-- If there is no title entered, an error message will be displayed -->
       <mat-error *ngIf="title.invalid">Please enter an artist's name</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <textarea matInput rows="4" name="content" ngModel required #content="ngModel" placeholder="Song name"></textarea>
+      <input matInput rows="4" name="content" ngModel required #content="ngModel" placeholder="Song name">
       <mat-error *ngIf="content.invalid">Please enter an artist's song</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-        <!-- <p><i>Does another artist feature on this song?</i></p>
-         <mat-radio-group>
-          <mat-radio-button ngModel value = "True" name="artistCheckYes" #artistCheckYes = "ngModel">Yes</mat-radio-button>
-          <mat-radio-button ngModel value = "False" name="artistCheckNo" #artistCheckNo = "ngModel">No</mat-radio-button>
-          <div *ngIf="artistCheckYes.True">
-          </div>
-        </mat-radio-group> -->
     </mat-form-field>
     <mat-form-field>
       <input matInput
         type="url" name = "image" ngModel required #image = "ngModel" placeholder="Image URL">
         <mat-error *ngIf = "image.invalid">Please enter a valid image URL</mat-error>
     </mat-form-field>
-    <mat-form-field>
-      <!-- Use iframes -->
+    <!-- <mat-form-field>
+      Use iframes 
         <input matInput
         type = "url" name = "video" ngModel required #video = "ngModel" placeholder="Video URL">
         <mat-error *ngIf = "video.invalid">Please enter a valid video URL</mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
     <button mat-raised-button color="accent" type="submit">Save</button>
   </form>
 </mat-card>

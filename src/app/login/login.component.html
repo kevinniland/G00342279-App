@@ -1,19 +1,24 @@
-<!-- Login Page -->
-<!-- Will save a user to localstorage and display 
-  the currently displayed user in the top right (not yet implemented) -->
+<mat-toolbar color="primary">Login</mat-toolbar>
 
-<mat-card>
-  <form (submit)="login(postForm)" #postForm="ngForm">
-    <mat-form-field>
-      <input matInput
-        type="text" name="username" ngModel required minlength="3" #username="ngModel" placeholder="Username">
-      <mat-error *ngIf="username.invalid">Please enter your username</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput
-        type = "password" name = "password" ngModel required minlength = "6" #password = "ngModel" placeholder="Password">
-      <mat-error *ngIf="password.invalid">Please enter your password</mat-error>
-    </mat-form-field>
-    <button mat-raised-button color="accent" type="submit">Login</button>
-  </form>
-</mat-card>
+<div class="login-form">
+  <mat-card>
+    <!-- When the user attempts to login, the login function is called from the .ts file -->
+    <form (submit)="login(postForm)" #postForm="ngForm">
+      <mat-form-field>
+        <input matInput
+          type="text" name="username" ngModel required minlength="3" #username="ngModel" placeholder="Username">
+        <mat-error *ngIf="username.invalid">Please enter your username</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput
+          type = "password" name = "password" ngModel required minlength = "6" #password = "ngModel" placeholder="Password">
+        <mat-error *ngIf="password.invalid">Please enter your password</mat-error>
+      </mat-form-field>
+      <br>
+      <!-- Allows the user to login or register -->
+      <button mat-raised-button color="primary" type="submit">Login</button>&nbsp;
+      <button mat-raised-button color="accent" [routerLink]="['/register']">Register</button>
+    </form>
+  </mat-card>
+</div>

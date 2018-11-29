@@ -1,10 +1,7 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-/* Aligns the login form */
-.login-form {
+.update-form {
     margin-left: auto;
     margin-right: auto;
-    max-width: 50%;
-
-    background-color: rgba(10, 90, 220, .75);
+    max-width: 30%;
 }

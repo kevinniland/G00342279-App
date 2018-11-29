@@ -1,24 +1,32 @@
-  <mat-sidenav-container fullscreen>
+  <mat-sidenav-container fullscreen class="background">
     <mat-sidenav #snav mode="push">
       <mat-toolbar color="primary">Menu</mat-toolbar>
+      <!-- Side nav - Allows user to navigate between the different pages -->
         <mat-nav-list>
-            <a mat-list-item [routerLink]="['/create']"><i class="material-icons">music_note</i>&nbsp;Add Artist</a>
-            <a mat-list-item [routerLink]="['/list']"><i class="material-icons">list</i>&nbsp;List of artist</a>
-            <a mat-list-item [routerLink]="['/edit']"><i class="material-icons">update</i>&nbsp;Edit Artist</a>
-            <a mat-list-item [routerLink]="['/images']"><i class="material-icons">camera_alt</i>&nbsp;Images</a>
-            <a mat-list-item [routerLink]="['/videos']"><i class="material-icons">music_video</i>&nbsp;Videos</a>
-            <a mat-list-item [routerLink]="['/login']"><i class="material-icons">account_box</i>&nbsp;Login</a>
-            <a mat-list-item [routerLink]="['/register']"><i class="material-icons">supervisor_account</i>&nbsp;Register</a>
-            <a mat-list-item [routerLink]="['/users']"><i class="material-icons">people</i>&nbsp;Users</a>
-          </mat-nav-list>
+          <a mat-list-item [routerLink]="['/create']"><i class="material-icons">music_note</i>&nbsp;Add Artist</a>
+          <a mat-list-item [routerLink]="['/list']"><i class="material-icons">list</i>&nbsp;List of artist</a>
+          <a mat-list-item [routerLink]="['/images']"><i class="material-icons">camera_alt</i>&nbsp;Images</a>
+          <!-- <a mat-list-item [routerLink]="['/videos']"><i class="material-icons">music_video</i>&nbsp;Videos</a> -->
+          <a mat-list-item [routerLink]="['/login']"><i class="material-icons">account_box</i>&nbsp;Login</a>
+          <a mat-list-item [routerLink]="['/register']"><i class="material-icons">supervisor_account</i>&nbsp;Register</a>
+          <a mat-list-item [routerLink]="['/users']"><i class="material-icons">people</i>&nbsp;Users</a>
+        </mat-nav-list>
     </mat-sidenav> 
 
     <mat-sidenav-content>
         <mat-toolbar color="primary" class = "example-toolbar"> 
             <button mat-icon-button (click) = "snav.toggle()"><mat-icon>menu</mat-icon></button>
             <span>G00342279 App</span>
-            <span class = "spacer"></span>
-            <!-- <div mat-card-avatar class = "profile-image">{{ profileImage }}</div> -->
+            <span class="spacer"></span>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <a maet-menu-item [routerLink]="['/editAccount', user._id]"><i class="material-icons">update</i>Edit Account</a>
+              </button>
+            </mat-menu>
+            <img mat-card-avatar class src="{{ profileImage }}">
             <span class="logged-in-user">{{ user }}</span>
           </mat-toolbar>
       <router-outlet></router-outlet>

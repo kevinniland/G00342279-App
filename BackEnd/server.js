@@ -39,6 +39,16 @@ app.use(function(req, res, next) {
     next();
     });
 
+// app.use("/", express.static(path.join(__dirname, "angular")));
+
+// app.get('/', function(req, res) {
+//     res.sendFile(path.join(__dirname, "angular", "index.html"));
+// })
+
+app.get('/', function (req, res) {
+    res.send('Connected to server');
+})
+
 app.post('/api/posts', function(req, res) {
     PostModel.create ({
         title: req.body.title,
@@ -62,16 +72,6 @@ app.post('/api/users', function (req, res) {
     res.send("User added");
 })
 
-// app.use("/", express.static(path.join(__dirname, "angular")));
-
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join(__dirname, "angular", "index.html"));
-// })
-
-app.get('/', function (req, res) {
-    res.send('Hello from Express');
-})
-
 app.get('/api/posts', function(req, res) {
     PostModel.find(function(err, data) {
         if (err) {
@@ -93,8 +93,6 @@ app.get('/api/users', function (req, res) {
 })
 
 app.get('/getposts', function (req, res) {
-    console.log("Get post");
-
     PostModel.findOne({'title': req.params.title}, 
         function (err, data) {
             if (err) {
@@ -128,6 +126,7 @@ app.delete('/api/users/:id', function (req, res) {
         });
 })
 
+// Update functions
 app.get('/api/posts/:id', function(req, res) {
     PostModel.findById(req.params.id,
         function (err, data) {
@@ -140,14 +139,13 @@ app.get('/api/posts/:id', function(req, res) {
 })
 
 app.get('/api/users/:id', function(req, res) {
-    UserModel.find({ _id: req.params.id},
+    UserModel.findById(req.params.id,
         function (err, data) {
             if (err) {
                 return handleError(err);
             }
-            else {
-                res.json(data);
-            }
+            
+            res.json(data);
         })
 })
 
@@ -162,9 +160,20 @@ app.put('/api/posts/:id', function(req, res) {
     });
 })
 
+app.put('/api/users/:id', function(req, res) {
+    UserModel.findByIdAndUpdate (req.params.id, req.body, 
+        function (err, data) {
+            if (err) {
+                return next(err);
+            }
+
+        res.json(data);
+    });
+})
+
 var server = app.listen(8081, function () {
    var host = server.address().address
    var port = server.address().port
    
-   console.log("Example app listening at http://%s:%s", host, port)
+   console.log("G00342269-App listening at http://%s:%s", host, port)
 })

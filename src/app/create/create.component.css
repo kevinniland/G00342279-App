@@ -1,7 +1,13 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-
 mat-form-field,
 textarea {
   width: 100%;
+}
+
+/* Sets the postion of the mat card */
+.add-card {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50%;
 }
