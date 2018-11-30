@@ -39,15 +39,17 @@ app.use(function(req, res, next) {
     next();
     });
 
-// app.use("/", express.static(path.join(__dirname, "angular")));
+// Used to run app using just the command 'node server.js'
+app.use("/", express.static(path.join(__dirname, "angular")));
 
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join(__dirname, "angular", "index.html"));
-// })
-
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, "angular", "index.html"));
     res.send('Connected to server');
 })
+
+// app.get('/', function (req, res) {
+//     res.send('Connected to server');
+// })
 
 app.post('/api/posts', function(req, res) {
     PostModel.create ({
