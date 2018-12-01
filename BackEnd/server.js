@@ -51,6 +51,7 @@ app.get('/', function(req, res) {
 //     res.send('Connected to server');
 // })
 
+// Post functions
 app.post('/api/posts', function(req, res) {
     PostModel.create ({
         title: req.body.title,
@@ -173,6 +174,7 @@ app.put('/api/users/:id', function(req, res) {
     });
 })
 
+// Defines port that app will be hosted on
 var server = app.listen(8081, function () {
    var host = server.address().address
    var port = server.address().port
